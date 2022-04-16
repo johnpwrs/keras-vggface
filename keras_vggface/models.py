@@ -279,11 +279,13 @@ def RESNET50(include_top=True, weights='vggface',
         if include_top:
             weights_path = get_file('rcmalli_vggface_tf_resnet50.h5',
                                     utils.RESNET50_WEIGHTS_PATH,
-                                    cache_subdir=utils.VGGFACE_DIR)
+                                    cache_subdir=utils.VGGFACE_DIR,
+                                    cache_dir='/tmp')
         else:
             weights_path = get_file('rcmalli_vggface_tf_notop_resnet50.h5',
                                     utils.RESNET50_WEIGHTS_PATH_NO_TOP,
-                                    cache_subdir=utils.VGGFACE_DIR)
+                                    cache_subdir=utils.VGGFACE_DIR,
+                                    cache_dir='/tmp')
         model.load_weights(weights_path)
         if K.backend() == 'theano':
             layer_utils.convert_all_kernels_in_model(model)
